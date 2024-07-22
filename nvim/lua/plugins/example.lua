@@ -92,6 +92,8 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
+        elixirls = {},
+        solargraph = {},
       },
     },
   },
@@ -154,6 +156,16 @@ return {
         "typescript",
         "vim",
         "yaml",
+        "elixir",
+        "heex",
+        "eex",
+        "graphql",
+        "ruby",
+        "git_config",
+        "gitcommit",
+        "git_rebase",
+        "gitignore",
+        "gitattributes"
       },
     },
   },
