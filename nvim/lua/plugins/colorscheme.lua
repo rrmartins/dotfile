@@ -1,7 +1,8 @@
 return {
   -- -- Add colorscheme plugin
   -- { "ishan9299/nvim-solarized-lua" },
-  { "craftzdog/solarized-osaka.nvim" },
+  -- { "craftzdog/solarized-osaka.nvim" },
+  { "Mofiqul/dracula.nvim" },
 
   -- Configure LazyVim to load preferred colorscheme
   {
@@ -11,7 +12,8 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       -- colorscheme = "solarized",
-      colorscheme = "solarized-osaka",
+      -- colorscheme = "solarized-osaka",
+      colorscheme = "dracula",
     },
   },
 }
