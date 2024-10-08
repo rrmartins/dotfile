@@ -46,7 +46,6 @@ brew "overmind"
 
 cask "font-meslo-lg-nerd-font"
 cask "1password"
-cask "alfred"
 cask "raycast"
 # cask "apparition47/tap/mailtrackerblocker"
 cask "appcleaner"
