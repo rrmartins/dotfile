@@ -2,6 +2,12 @@
 
 ## Steps
 
+### Run setup.sh
+
+```
+sh setup.sh
+```
+
 ### Install Homebrew
 
 Follow the steps on https://brew.sh.
