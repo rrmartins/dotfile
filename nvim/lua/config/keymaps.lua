@@ -19,19 +19,23 @@ vim.keymap.set("n", "<leader>ttn", ":TestNearest<CR>", { desc = "Test nearest", 
 vim.keymap.set("n", "<leader>ttf", ":TestFile<CR>", { desc = "Test file", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ttl", ":TestLast<CR>", { desc = "Test last", noremap = true, silent = true })
 
-vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', {})
-vim.keymap.set('n', 'gr', '<Plug>(coc-references)', {})
+vim.keymap.set("n", "gd", "<Plug>(coc-definition)", {})
+vim.keymap.set("n", "gr", "<Plug>(coc-references)", {})
 
-vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle <CR><esc>', opts)
+vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle <CR><esc>", opts)
 
-vim.keymap.set('n', '<C-e>', ':e<cr>', opts)
-vim.keymap.set('n', '<C-o>', ':noh<cr><esc>', opts)
-vim.keymap.set('n', '<C-s>', ':w<cr><esc>', opts)
-vim.keymap.set('n', '<C-Q>', ':qa<cr><esc>', opts)
-vim.keymap.set('n', '<C-q>', ':q<cr><esc>', opts)
+vim.keymap.set("n", "<C-e>", ":e<cr>", opts)
+vim.keymap.set("n", "<C-o>", ":noh<cr><esc>", opts)
+vim.keymap.set("n", "<C-s>", ":w<cr><esc>", opts)
+vim.keymap.set("n", "<C-Q>", ":qa<cr><esc>", opts)
+vim.keymap.set("n", "<C-q>", ":q<cr><esc>", opts)
 
-vim.keymap.set('n', '<Tab>', ':tabnext<CR>', opts)
-vim.keymap.set('n', '<S-Tab>', ':tabprevious<CR>', opts)
+vim.keymap.set("n", "<Tab>", ":tabnext<CR>", opts)
+vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", opts)
+
+vim.keymap.set("n", "<leader>zb", function()
+  require("telescope.builtin").live_grep({ glob_pattern = "*.rb" })
+end, { desc = "search files .rb" })
 
 -- function ReloadConfig()
 --   for name,_ in pairs(package.loaded) do
