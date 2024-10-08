@@ -14,6 +14,8 @@ return {
       -- colorscheme = "solarized",
       -- colorscheme = "solarized-osaka",
       colorscheme = "dracula",
+      -- colorscheme = "tokyonight",
+      -- colorscheme = "catppuccin-mocha",
     },
   },
 }
