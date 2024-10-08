@@ -4,19 +4,17 @@
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
-	# Initialize the zsh completion system
-	# http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Completion-System
+  # Initialize the zsh completion system
+  # http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Completion-System
   autoload -Uz compinit
   compinit
 
 
-	# case insensitive path-completion
-	# https://scriptingosx.com/2019/07/moving-to-zsh-part-5-completions/
-	zstyle ':completion:*' matcher-list \
-		'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
-		'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
-		'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
-		'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+  # case insensitive path-completion
+  # https://scriptingosx.com/2019/07/moving-to-zsh-part-5-completions/
+  zstyle ':completion:*' matcher-list \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
 
 fi
 
@@ -25,7 +23,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=243'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_USE_ASYNC=trug
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 MENU_COMPLETE=true
 
 
@@ -33,6 +31,30 @@ MENU_COMPLETE=true
 #########################################################################################
 # ZSH History Settings
 #########################################################################################
+# https://scarff.id.au/blog/2019/zsh-history-conditional-on-command-success/
+# Prevent the command from being written to history before it's
+# executed; save it to LASTHIST instead.  Write it to history
+# in precmd.
+#
+# called before a history line is saved.  See zshmisc(1).
+function zshaddhistory() {
+  # Remove line continuations since otherwise a "\" will eventually
+  # get written to history with no newline.
+  LASTHIST=${1//\\$'\n'/}
+  # Return value 2: "... the history line will be saved on the internal
+  # history list, but not written to the history file".
+  return 2
+}
+
+# zsh hook called before the prompt is printed.  See zshmisc(1).
+function precmd() {
+  # Write the last command if successful, using the history buffered by
+  # zshaddhistory().
+  if [[ $? == 0 && -n ${LASTHIST//[[:space:]\n]/} && -n $HISTFILE ]] ; then
+    print -sr -- ${=${LASTHIST%%'\n'}}
+  fi
+}
+
 # History location.
 export HISTFILE=~/.zsh_history
 
@@ -53,7 +75,7 @@ setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately aft
 
 # Append history without exiting shell.
 setopt inc_append_history
-export HISTTIMEFORMAT="[%F %T] "
+export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
 
 # Add Timestamp to history.
 setopt extended_history
@@ -161,18 +183,6 @@ function fixadguard() {
 
 
 #########################################################################################
-# asdf
-#########################################################################################
-# Add to shell
-. $(brew --prefix asdf)/libexec/asdf.sh
-
-# Get all available language versions rather than waiting someone to bump it
-# https://github.com/asdf-vm/asdf-ruby/commit/af80345be901838ce2c6a58c6536a6fccc573b91
-export ASDF_RUBY_BUILD_VERSION=master
-
-
-
-#########################################################################################
 # Homebrew
 #########################################################################################
 # Export these to your path because doctor said so! :)
@@ -195,3 +205,15 @@ eval "$(direnv hook zsh)"
 
 # Add https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
+
+
+
+#########################################################################################
+# asdf - MUST BE LAST
+#########################################################################################
+# Get all available language versions rather than waiting someone to bump it
+# https://github.com/asdf-vm/asdf-ruby/commit/af80345be901838ce2c6a58c6536a6fccc573b91
+export ASDF_RUBY_BUILD_VERSION=master
+
+# Add to shell
+. $(brew --prefix asdf)/libexec/asdf.sh
