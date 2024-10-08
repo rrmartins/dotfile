@@ -217,3 +217,49 @@ export ASDF_RUBY_BUILD_VERSION=master
 
 # Add to shell
 . $(brew --prefix asdf)/libexec/asdf.sh
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="nicoulaj"
+
+plugins=(git docker docker-compose rails ruby mix mix-fast)
+
+source $ZSH/oh-my-zsh.sh
+
+source ~/.zshrc_aliases
+
+source ~/.zprofile
+
+
+export ES_JAVA_HOME=/opt/homebrew/Cellar/openjdk/22.0.1/libexec/openjdk.jdk/Contents/Home
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/llvm/lib/pkgconfig"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/libffi/include"
+export LDFLAGS="-L/opt/homebrew/opt/snappy/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/snappy/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/snappy/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib -L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/opt/homebrew/opt/readline/lib/pkgconfig:/opt/homebrew/opt/libffi/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+
+export ES_JAVA_HOME=/opt/homebrew/Cellar/openjdk/22.0.2/libexec/openjdk.jdk/Contents/Home
