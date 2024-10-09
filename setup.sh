@@ -77,4 +77,31 @@ else
     echo "TPM already installed."
 fi
 
+# Define the font file URL
+FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/DroidSansMono.zip"
+FONT_DIR="$HOME/Library/Fonts"
+TMP_DIR="/tmp/DroidSansMono"
+
+# Create a temporary directory to download and extract the font
+echo "Creating temporary directory at $TMP_DIR..."
+mkdir -p $TMP_DIR
+
+# Download the font zip file
+echo "Downloading DroidSansM Nerd Font..."
+curl -L $FONT_URL -o "$TMP_DIR/DroidSansMono.zip"
+
+# Unzip the font file
+echo "Unzipping the font..."
+unzip -o "$TMP_DIR/DroidSansMono.zip" -d $TMP_DIR
+
+# Install the font to the user's fonts directory
+echo "Installing the font to $FONT_DIR..."
+cp -f $TMP_DIR/*.ttf $FONT_DIR
+
+# Clean up temporary files
+echo "Cleaning up temporary directory..."
+rm -rf $TMP_DIR
+
+echo "DroidSansM Nerd Font installation completed!"
+
 echo "Setup done!"
