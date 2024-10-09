@@ -67,4 +67,14 @@ else
     echo "Current shell is zsh."
 fi
 
+# Install and configure Tmux Plugin Manager (TPM)
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "TPM not found. Installing..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    chmod +x ~/.tmux/plugins/tpm/tpm
+    echo "TPM installed successfully."
+else
+    echo "TPM already installed."
+fi
+
 echo "Setup done!"
