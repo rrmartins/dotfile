@@ -96,7 +96,7 @@ unzip -o "$TMP_DIR/DroidSansMono.zip" -d $TMP_DIR
 
 # Install the font to the user's fonts directory
 echo "Installing the font to $FONT_DIR..."
-cp -f $TMP_DIR/*.ttf $FONT_DIR
+cp -f $TMP_DIR/*.* $FONT_DIR
 
 # Clean up temporary files
 echo "Cleaning up temporary directory..."
