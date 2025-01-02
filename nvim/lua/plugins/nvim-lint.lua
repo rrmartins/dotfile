@@ -2,7 +2,7 @@ return {
   "mfussenegger/nvim-lint",
   opts = {
     linters_by_ft = {
-      ruby = { "rubocop" },
+      -- ruby = { "rubocop" },
 
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
