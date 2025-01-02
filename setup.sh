@@ -30,51 +30,71 @@ ln -sFfn "$DOTFILES_DIR/tmuxconf" $HOME/.tmux.conf
 ln -sfn "$DOTFILES_DIR/hushlogin" $HOME/.hushlogin
 
 # Instalar Homebrew e executar o bundle
-if ! command -v brew &> /dev/null; then
-    echo "Homebrew didnt found. Installing..."
-    echo "This process may take a while..."
+if ! command -v brew &>/dev/null; then
+  echo "Homebrew didnt found. Installing..."
+  echo "This process may take a while..."
 
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-    echo "Homebrew found. Updating..."
-    brew update
+  echo "Homebrew found. Updating..."
+  brew update
 fi
 
 if [ -f "$DOTFILES_DIR/Brewfile" ]; then
-    echo "Installing packages..."
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew bundle
+  echo "Installing packages..."
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  brew bundle
 else
-    echo "Brewfile not found in $DOTFILES_DIR. Skipping brew bundle step."
+  echo "Brewfile not found in $DOTFILES_DIR. Skipping brew bundle step."
 fi
 
 # Install Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Oh My Zsh didnt found. Installing..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  echo "Oh My Zsh didnt found. Installing..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
-    echo "Oh My Zsh already installed."
+  echo "Oh My Zsh already installed."
 fi
 
 # Define the shell default as zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
-    echo "Current shell: $SHELL"
-    echo "Zsh path: $(which zsh)"
-    echo "Setting zsh as default shell..."
-    chsh -s "$(which zsh)"
+  echo "Current shell: $SHELL"
+  echo "Zsh path: $(which zsh)"
+  echo "Setting zsh as default shell..."
+  chsh -s "$(which zsh)"
 else
-    echo "Current shell is zsh."
+  echo "Current shell is zsh."
 fi
 
 # Install and configure Tmux Plugin Manager (TPM)
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    echo "TPM not found. Installing..."
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    chmod +x ~/.tmux/plugins/tpm/tpm
-    echo "TPM installed successfully."
+  echo "TPM not found. Installing..."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  chmod +x ~/.tmux/plugins/tpm/tpm
+  echo "TPM installed successfully."
 else
-    echo "TPM already installed."
+  echo "TPM already installed."
+fi
+
+# Install and configure Zellij
+if ! command -v zellij &>/dev/null; then
+  echo "Zellij not found. Installing..."
+  brew install zellij
+else
+  echo "Zellij already installed."
+fi
+
+# Create Zellij configuration folder
+echo "Creating Zellij configuration folder..."
+mkdir -p $HOME/.config/zellij
+
+# Create symlinks for Zellij config files
+if [ -d "$DOTFILES_DIR/zellij" ]; then
+  echo "Linking Zellij configuration..."
+  ln -sfn "$DOTFILES_DIR/zellij" $HOME/.config/zellij
+else
+  echo "No Zellij configuration folder found in $DOTFILES_DIR. Skipping."
 fi
 
 # Define the font file URL
@@ -105,3 +125,4 @@ rm -rf $TMP_DIR
 echo "DroidSansM Nerd Font installation completed!"
 
 echo "Setup done!"
+
