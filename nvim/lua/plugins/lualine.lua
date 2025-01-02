@@ -4,8 +4,12 @@ return {
     event = "VeryLazy",
     opts = {
       sections = {
-        lualine_b = {}, -- Don't display default branch
-        lualine_z = {}, -- Don't display default date
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff" },
+        lualine_c = { "filename" },
+        lualine_x = { "encoding", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
       },
     },
   },
