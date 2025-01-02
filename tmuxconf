@@ -51,6 +51,8 @@ set -g status-bg black
 # Window list
 set -g status-justify left
 
+set -g status-position bottom
+
 # Disable auto window naming
 # set-option -g allow-rename off
 
@@ -67,6 +69,8 @@ set -g status-right "#[fg=cyan] %a, %m/%d/%Y %H:%M "
 # Status bar right
 set -g status-right ""
 set -g status-right "#[fg=red]#(~/Developer/dotfiles/battery Discharging) #[fg=cyan] %a, %m/%d/%Y %H:%M"
+
+set-window-option -g window-status-separator ''
 
 # easily toggle synchronization (mnemonic: e is for echo)
 # sends input to all panes in a given window.
