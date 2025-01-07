@@ -86,13 +86,14 @@ else
 fi
 
 # Create Zellij configuration folder
+echo "Creating Zellij configuration folder..."
+mkdir -p $HOME/.config/zellij
+
 # Create symlinks for Zellij config files
 if [ -d "$DOTFILES_DIR/zellij" ]; then
   echo "Linking Zellij configuration..."
   ln -sfn "$DOTFILES_DIR/zellij" $HOME/.config/zellij
 else
-  echo "Creating Zellij configuration folder..."
-  mkdir -p $HOME/.config/zellij
   echo "No Zellij configuration folder found in $DOTFILES_DIR. Skipping."
 fi
 
