@@ -92,6 +92,7 @@ mkdir -p $HOME/.config/zellij
 # Create symlinks for Zellij config files
 if [ -d "$DOTFILES_DIR/zellij" ]; then
   echo "Linking Zellij configuration..."
+  rm -rf $HOME/.config/zellij
   ln -sfn "$DOTFILES_DIR/zellij" $HOME/.config/zellij
 else
   echo "No Zellij configuration folder found in $DOTFILES_DIR. Skipping."
