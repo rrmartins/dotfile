@@ -23,6 +23,9 @@ if ! command -v brew &>/dev/null; then
   echo "This process may take a while..."
 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>$HOME/.zprofile
+  eval "$($(brew --prefix)/bin/brew shellenv)"
 else
   echo "Homebrew found. Updating..."
   brew update
