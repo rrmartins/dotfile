@@ -47,17 +47,6 @@ ln -sfn "$DOTFILES_DIR/hammerspoon/Spoons" $HOME/.hammerspoon/
 ln -sFfn "$DOTFILES_DIR/tmuxconf" $HOME/.tmux.conf
 ln -sfn "$DOTFILES_DIR/hushlogin" $HOME/.hushlogin
 
-# Instalar Homebrew e executar o bundle
-if ! command -v brew &>/dev/null; then
-  echo "Homebrew didnt found. Installing..."
-  echo "This process may take a while..."
-
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-  echo "Homebrew found. Updating..."
-  brew update
-fi
-
 if [ -f "$DOTFILES_DIR/Brewfile" ]; then
   echo "Installing packages..."
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
