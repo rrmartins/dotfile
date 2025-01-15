@@ -67,6 +67,8 @@ cask "visual-studio-code"
 cask "vlc"
 # cask "webtorrent"
 
+cask bartender
+
 # mas "Poolside FM", id: 1514817810
 mas "Refined GitHub", id: 1519867270
 mas "Slack", id: 803453959
