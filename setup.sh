@@ -140,6 +140,9 @@ rm -rf $TMP_DIR
 
 echo "DroidSansM Nerd Font installation completed!"
 
+# Ensure Homebrew is available in the current shell
+eval "$($(brew --prefix)/bin/brew shellenv)"
+
 # Install asdf via Homebrew
 echo "Installing asdf..."
 brew install asdf
