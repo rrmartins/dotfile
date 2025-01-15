@@ -13,24 +13,6 @@ mkdir -p $HOME/.config/nvim/.undo/
 mkdir -p $HOME/.config/nvim/.backup/
 mkdir -p $HOME/.config/nvim/.swp/
 
-# Adicionando a instalação do YADR
-echo "Installing YADR..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh)"
-
-# Instalar Homebrew e executar o bundle
-if ! command -v brew &>/dev/null; then
-  echo "Homebrew didnt found. Installing..."
-  echo "This process may take a while..."
-
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>$HOME/.zprofile
-  eval "$($(brew --prefix)/bin/brew shellenv)"
-else
-  echo "Homebrew found. Updating..."
-  brew update
-fi
-
 echo "Creating symlinks..."
 ln -sfn "$DOTFILES_DIR/zshrc" $HOME/.zshrc
 ln -sfn "$DOTFILES_DIR/zshrc_aliases" $HOME/.zshrc_aliases
@@ -46,6 +28,25 @@ ln -sfn "$DOTFILES_DIR/hammerspoon/Spoons" $HOME/.hammerspoon/
 
 ln -sFfn "$DOTFILES_DIR/tmuxconf" $HOME/.tmux.conf
 ln -sfn "$DOTFILES_DIR/hushlogin" $HOME/.hushlogin
+
+# Adicionando a instalação do YADR
+echo "Installing YADR..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh)"
+
+# Instalar Homebrew e executar o bundle
+if ! command -v brew &>/dev/null; then
+  echo "Homebrew didnt found. Installing..."
+  echo "This process may take a while..."
+
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>$HOME/.zprofile
+  eval "$($(brew --prefix)/bin/brew shellenv)"
+  echo "export PATH=/opt/homebrew/bin:$PATH" >>~/.zshrc
+else
+  echo "Homebrew found. Updating..."
+  brew update
+fi
 
 if [ -f "$DOTFILES_DIR/Brewfile" ]; then
   echo "Installing packages..."
