@@ -13,6 +13,21 @@ mkdir -p $HOME/.config/nvim/.undo/
 mkdir -p $HOME/.config/nvim/.backup/
 mkdir -p $HOME/.config/nvim/.swp/
 
+# Adicionando a instalação do YADR
+echo "Installing YADR..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh)"
+
+# Instalar Homebrew e executar o bundle
+if ! command -v brew &>/dev/null; then
+  echo "Homebrew didnt found. Installing..."
+  echo "This process may take a while..."
+
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo "Homebrew found. Updating..."
+  brew update
+fi
+
 echo "Creating symlinks..."
 ln -sfn "$DOTFILES_DIR/zshrc" $HOME/.zshrc
 ln -sfn "$DOTFILES_DIR/zshrc_aliases" $HOME/.zshrc_aliases
