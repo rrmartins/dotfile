@@ -241,6 +241,12 @@ gacm() {
   ga $1 && gcsm $2
 }
 
+# jumpseller
+alias jumpseller='projects && jumpseller'
+alias japps='jumpseller && apps'
+alias jcore='jumpseller && core'
+alias jinternal-apps='jumpseller && internal-apps'
+alias jinstagram-media-fetch='jumpseller && instagram-media-fetch'
 alias runserver='bundle exec foreman start -f Procfile.dev'
 alias runservercore='bundle exec foreman start -f Procfile'
 alias runconsole='APP_ENV=development RACK_ENV=development bundle exec bin/console'
@@ -280,6 +286,7 @@ alias listportrails="lsof -i tcp:3000"
 alias elixirs='projects && elixirs'
 alias readerrss='elixirs && reader_rss'
 
+
 alias tnew='tmux new -s '
 alias tattach='tmux a '
 alias tls='tmux ls'
@@ -292,11 +299,22 @@ removefiles() {
 }
 alias remfiles=removefiles
 
+alias brainnco='projects && brainnco'
+alias yapi='brainnco && yield-api'
+alias ywebapp='brainnco && yield-webapp'
 alias mixes='mix format && mix format --check-formatted && mix credo --strict && mix test'
 alias mxt='mix test '
 alias mxdt='MIX_ENV=test mix ecto.drop && mix test '
 
 alias memt='MIX_ENV=test mem && mem'
+
+# Finbits
+alias finbits='projects && finbits'
+
+fb() {
+  finbits && cd $1
+}
+# alias fb=fb
 
 alias gpl=ggpull
 alias gps=ggpush
@@ -365,6 +383,16 @@ source <(fzf --zsh)
 # export PATH="/usr/local/opt/node@16/bin:$PATH"
 # export LDFLAGS="-L/usr/local/opt/node@16/lib"
 # export CPPFLAGS="-I/usr/local/opt/node@16/include"
+
+alias tst='projects && cd tasktag/'
+alias ttb='tst && cd tasktag-backend/'
+alias ttf='tst && cd tasktag-frontend/'
+
+alias broadvoice='projects && cd broadvoice/'
+alias ap='broadvoice && cd ap/'
+alias telephony='broadvoice && cd telephony/'
+alias k8slabs='broadvoice && cd k8s-gitops-labs/'
+alias ertbot='broadvoice && cd ertbot/'
 
 source ~/.profile
 source ~/.bashrc
