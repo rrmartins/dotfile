@@ -93,7 +93,6 @@ return {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
         elixirls = {},
-        solargraph = {},
       },
     },
   },
@@ -165,7 +164,8 @@ return {
         "gitcommit",
         "git_rebase",
         "gitignore",
-        "gitattributes"
+        "gitattributes",
+        "coffeescript",
       },
     },
   },
