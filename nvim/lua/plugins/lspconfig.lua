@@ -15,6 +15,10 @@ return {
           enabled = true,
           cmd = { "/Users/rrmartins/.asdf/shims/ruby-lsp" },
         },
+        solargraph = {
+          enabled = lsp == "solargraph",
+          cmd = { "/Users/rrmartins/.asdf/shims/solargraph" },
+        },
         rubocop = {
           mason = false,
           enabled = false,
@@ -24,6 +28,32 @@ return {
             client.resolved_capabilities.document_formatting = false
             client.resolved_capabilities.document_range_formatting = false
           end,
+        },
+        elixirls = {
+          keys = {
+            {
+              "<leader>cp",
+              function()
+                local params = vim.lsp.util.make_position_params()
+                LazyVim.lsp.execute({
+                  command = "manipulatePipes:serverid",
+                  arguments = { "toPipe", params.textDocument.uri, params.position.line, params.position.character },
+                })
+              end,
+              desc = "To Pipe",
+            },
+            {
+              "<leader>cP",
+              function()
+                local params = vim.lsp.util.make_position_params()
+                LazyVim.lsp.execute({
+                  command = "manipulatePipes:serverid",
+                  arguments = { "fromPipe", params.textDocument.uri, params.position.line, params.position.character },
+                })
+              end,
+              desc = "From Pipe",
+            },
+          },
         },
       },
     },
