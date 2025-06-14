@@ -15,7 +15,7 @@ return {
       -- api_key_cmd = "pass show openai/terminal",
       -- api_key_cmd = "op read op://personal/Openai/terminal --no-newline",
       openai_params = {
-        model = "gpt-3.5-turbo-16k",
+        model = "gpt-4o-mini",
         max_tokens = 100,
         temperature = 0.5,
         top_p = 1,
