@@ -2,7 +2,8 @@ return {
   -- -- Add colorscheme plugin
   -- { "ishan9299/nvim-solarized-lua" },
   -- { "craftzdog/solarized-osaka.nvim" },
-  { "Mofiqul/dracula.nvim" },
+  -- { "Mofiqul/dracula.nvim" },
+  { "folke/tokyonight.nvim" },
 
   -- Configure LazyVim to load preferred colorscheme
   {
@@ -13,8 +14,11 @@ return {
     opts = {
       -- colorscheme = "solarized",
       -- colorscheme = "solarized-osaka",
-      colorscheme = "dracula",
+      -- colorscheme = "dracula",
       -- colorscheme = "tokyonight",
+      colorscheme = "tokyonight-night",
+      -- colorscheme = "tokyonight-moon",
+      -- colorscheme = "tokyonight-storm",
       -- colorscheme = "catppuccin-mocha",
     },
   },
