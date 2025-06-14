@@ -27,9 +27,6 @@ vim.keymap.set("n", "<leader>ttn", ":TestNearest<CR>", { desc = "Test nearest", 
 vim.keymap.set("n", "<leader>ttf", ":TestFile<CR>", { desc = "Test file", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ttl", ":TestLast<CR>", { desc = "Test last", noremap = true, silent = true })
 
-vim.keymap.set("n", "gd", "<Plug>(coc-definition)", {})
-vim.keymap.set("n", "gr", "<Plug>(coc-references)", {})
-
 vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle <CR><esc>", opts)
 
 vim.keymap.set("n", "<C-e>", ":e<cr>", opts)
@@ -44,6 +41,20 @@ vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", opts)
 vim.keymap.set("n", "<leader>zb", function()
   require("telescope.builtin").live_grep({ glob_pattern = "*.rb" })
 end, { desc = "search files .rb" })
+
+vim.keymap.set("n", "<leader>zsd", function()
+  require("telescope.builtin").live_grep({
+    glob_pattern = { "*.rb", "!spec/**", "!db/**" },
+  })
+end, { desc = "Search files .rb excluding spec and db folders" })
+
+vim.keymap.set("n", "<leader>zss", function()
+  require("telescope.builtin").live_grep({
+    glob_pattern = { "*.rb", "!spec/**" },
+  })
+end, { desc = "Search files .rb excluding spec folder" })
+
+vim.keymap.set("n", "<leader>ai", ":AICommits<CR>", { desc = "AI Commits", noremap = true, silent = true })
 
 -- function ReloadConfig()
 --   for name,_ in pairs(package.loaded) do
