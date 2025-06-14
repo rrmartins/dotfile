@@ -18,6 +18,11 @@ return {
       json = { "prettier" },
       yaml = { "prettier" },
       markdown = { "prettier" },
+
+      ruby = { "rubocop" },
+      elixir = { "mix" },
+      heex = { "mix" },
+      eex = { "mix" },
     },
     -- format_on_save = function(bufnr)
     --   if vim.bo[bufnr].filetype == "ruby" then
