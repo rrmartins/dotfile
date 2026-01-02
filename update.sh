@@ -5,22 +5,6 @@ DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 errors=0
 
 echo "Using DOTFILES_DIR=$DOTFILES_DIR"
-
-check_brew() {
-  if ! command -v brew >/dev/null 2>&1; then
-    echo "[brew] Homebrew not found"
-    errors=$((errors+1))
-    return
-  fi
-  echo "[brew] Homebrew found"
-  echo "[brew] Checking Brewfile..."
-  if ! brew bundle check --file="$DOTFILES_DIR/Brewfile" >/tmp/brew_bundle_check.out 2>&1; then
-    echo "[brew] Some Brewfile items are missing or not installed. Run: brew bundle --file=\"$DOTFILES_DIR/Brewfile\""
-    cat /tmp/brew_bundle_check.out
-    errors=$((errors+1))
-  else
-    echo "[brew] Brewfile OK"
-  fi
 #!/usr/bin/env bash
 set -euo pipefail
 
