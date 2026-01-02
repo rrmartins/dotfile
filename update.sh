@@ -95,15 +95,13 @@ ensure_asdf_and_plugins() {
     fi
   done
 
-  declare -A want
-  want[ruby]=3.3.6
-  want[erlang]=27.0
-  want[elixir]=1.17.2
-  want[nodejs]=18.20.2
-  want[python]=3.10.14
+  # use indexed arrays for compatibility with older bash (/bin/sh or bash <4)
+  want_keys=(ruby erlang elixir nodejs python)
+  want_vals=(3.3.6 27.0 1.17.2 18.20.2 3.10.14)
 
-  for p in "${!want[@]}"; do
-    ver="${want[$p]}"
+  for i in "${!want_keys[@]}"; do
+    p="${want_keys[$i]}"
+    ver="${want_vals[$i]}"
     if asdf list "$p" 2>/dev/null | grep -q "$ver"; then
       echo "[asdf] $p $ver installed"
     else
