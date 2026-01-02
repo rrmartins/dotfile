@@ -38,6 +38,8 @@ brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
+# Zellij terminal workspace manager
+brew "zellij"
 # brew "pgcli"
 # brew "pgweb"
 
