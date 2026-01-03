@@ -374,7 +374,9 @@ alias remall=removeWithAll
 # for f in **/.*\ 2*; do echo rm -rf "$f"; done
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 
 # export PATH="/usr/local/opt/node@12/bin:$PATH"
 # export LDFLAGS="-L/usr/local/opt/node@12/lib"
@@ -394,10 +396,12 @@ alias telephony='broadvoice && cd telephony/'
 alias k8slabs='broadvoice && cd k8s-gitops-labs/'
 alias ertbot='broadvoice && cd ertbot/'
 
-source ~/.profile
-source ~/.bashrc
+. [ -f ~/.profile ] && source ~/.profile
+. [ -f ~/.bashrc ] && source ~/.bashrc
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+if [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]; then
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
 
 export PATH="/opt/homebrew/bin/openssl/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/bin/openssl/lib"
