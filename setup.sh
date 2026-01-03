@@ -57,6 +57,15 @@ else
   echo "Brewfile not found in $DOTFILES_DIR. Skipping brew bundle step."
 fi
 
+# Install common shell tools via Homebrew (zsh plugins, powerlevel10k, direnv, zoxide, fzf, asdf)
+if command -v brew >/dev/null 2>&1; then
+  echo "Installing shell tools via brew..."
+  brew install zsh-autosuggestions zsh-syntax-highlighting powerlevel10k direnv zoxide fzf asdf || true
+  if [ -d "$(brew --prefix)/opt/fzf" ]; then
+    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc || true
+  fi
+fi
+
 # Install Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "Oh My Zsh didnt found. Installing..."
