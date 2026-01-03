@@ -137,6 +137,7 @@ ensure_symlinks() {
     "$HOME/.zshrc_aliases:$DOTFILES_DIR/zshrc_aliases"
     "$HOME/.p10k.zsh:$DOTFILES_DIR/p10k.zsh"
     "$HOME/.config/nvim/init.lua:$DOTFILES_DIR/nvim/init.lua"
+    "$HOME/.config/zellij:$DOTFILES_DIR/zellij"
   )
   for entry in "${checks[@]}"; do
     IFS=":" read -r path target <<< "$entry"

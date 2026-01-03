@@ -31,6 +31,12 @@ if command -v brew >/dev/null 2>&1; then
     brew uninstall --ignore-dependencies zsh-autosuggestions zsh-syntax-highlighting powerlevel10k direnv zoxide fzf asdf || true
 fi
 
+# Remove zellij symlink/config if present
+if [ -e "$HOME/.config/zellij" ] || [ -L "$HOME/.config/zellij" ]; then
+    echo "Removing zellij config at $HOME/.config/zellij"
+    rm -rf "$HOME/.config/zellij" || true
+fi
+
 # Revert shell to the original shell
 if [ "$SHELL" == "$(which zsh)" ]; then
     echo "Reverting shell to bash..."
