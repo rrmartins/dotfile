@@ -25,6 +25,12 @@ unlink $HOME/.hammerspoon/Spoons
 unlink $HOME/.tmux.conf
 unlink $HOME/.hushlogin
 
+# Uninstall shell tools installed via Homebrew
+if command -v brew >/dev/null 2>&1; then
+    echo "Uninstalling shell tools installed by setup..."
+    brew uninstall --ignore-dependencies zsh-autosuggestions zsh-syntax-highlighting powerlevel10k direnv zoxide fzf asdf || true
+fi
+
 # Revert shell to the original shell
 if [ "$SHELL" == "$(which zsh)" ]; then
     echo "Reverting shell to bash..."
