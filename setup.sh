@@ -109,8 +109,6 @@ else
 fi
 
 # Create Zellij configuration folder
-echo "Creating Zellij configuration folder..."
-mkdir -p $HOME/.config/zellij
 
 # Create symlinks for Zellij config files
 if [ -d "$DOTFILES_DIR/zellij" ]; then
