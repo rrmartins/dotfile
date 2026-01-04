@@ -5,13 +5,6 @@ DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 errors=0
 
 echo "Using DOTFILES_DIR=$DOTFILES_DIR"
-#!/usr/bin/env bash
-set -euo pipefail
-
-DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
-errors=0
-
-echo "Using DOTFILES_DIR=$DOTFILES_DIR"
 
 ensure_brew() {
   if command -v brew >/dev/null 2>&1; then
@@ -65,6 +58,25 @@ ensure_zellij() {
   echo "[zellij] installed"
 }
 
+ensure_shell_tools() {
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "[brew] brew missing — skipping shell tools"
+    return 0
+  fi
+  pkgs=(zsh-autosuggestions zsh-syntax-highlighting powerlevel10k direnv zoxide fzf asdf)
+  for p in "${pkgs[@]}"; do
+    if brew list --formula | grep -q "^${p}$" >/dev/null 2>&1; then
+      echo "[brew] $p already installed"
+    else
+      echo "[brew] Installing $p"
+      brew install "$p" || { echo "[brew] install $p failed"; errors=$((errors+1)); }
+    fi
+  done
+  if [ -d "$(brew --prefix)/opt/fzf" ]; then
+    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc || true
+  fi
+}
+
 ensure_asdf_and_plugins() {
   if ! command -v asdf >/dev/null 2>&1; then
     if command -v brew >/dev/null 2>&1; then
@@ -91,25 +103,23 @@ ensure_asdf_and_plugins() {
       echo "[asdf] plugin ${p} present"
     else
       echo "[asdf] adding plugin ${p}"
-      asdf plugin-add "$p" || { echo "[asdf] plugin-add $p failed"; errors=$((errors+1)); }
+      asdf plugin add "$p" || { echo "[asdf] plugin add $p failed"; errors=$((errors+1)); }
     fi
   done
 
-  declare -A want
-  want[ruby]=3.3.6
-  want[erlang]=27.0
-  want[elixir]=1.17.2
-  want[nodejs]=18.20.2
-  want[python]=3.10.14
+  # use indexed arrays for compatibility with older bash (/bin/sh or bash <4)
+  want_keys=(ruby erlang elixir nodejs python)
+  want_vals=(3.3.6 27.0 1.17.2 18.20.2 3.10.14)
 
-  for p in "${!want[@]}"; do
-    ver="${want[$p]}"
+  for i in "${!want_keys[@]}"; do
+    p="${want_keys[$i]}"
+    ver="${want_vals[$i]}"
     if asdf list "$p" 2>/dev/null | grep -q "$ver"; then
       echo "[asdf] $p $ver installed"
     else
       echo "[asdf] Installing $p $ver"
       asdf install "$p" "$ver" || { echo "[asdf] install $p $ver failed"; errors=$((errors+1)); continue; }
-      asdf global "$p" "$ver" || true
+      asdf set global "$p" "$ver" || true
     fi
   done
 }
@@ -120,6 +130,7 @@ ensure_symlinks() {
     "$HOME/.zshrc_aliases:$DOTFILES_DIR/zshrc_aliases"
     "$HOME/.p10k.zsh:$DOTFILES_DIR/p10k.zsh"
     "$HOME/.config/nvim/init.lua:$DOTFILES_DIR/nvim/init.lua"
+    "$HOME/.config/zellij:$DOTFILES_DIR/zellij"
   )
   for entry in "${checks[@]}"; do
     IFS=":" read -r path target <<< "$entry"
@@ -144,6 +155,7 @@ ensure_symlinks() {
 
 echo "Starting install+validation..."
 ensure_brew || true
+ensure_shell_tools || true
 install_brewfile || true
 ensure_zellij || true
 ensure_asdf_and_plugins || true

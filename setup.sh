@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the env var to Dotfiles folder
-# export DOTFILES_DIR="/Users/rrmartins/Documents/projects/dotfile"
+export DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 
 # Create folders
 echo "Creating folders..."
@@ -40,9 +40,15 @@ if ! command -v brew &>/dev/null; then
 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>$HOME/.zprofile
-  eval "$($(brew --prefix)/bin/brew shellenv)"
-  echo "export PATH=/opt/homebrew/bin:$PATH" >>~/.zshrc
+  if [ -f "/opt/homebrew/bin/brew" ]; then
+    BREW_BIN="/opt/homebrew/bin/brew"
+  else
+    BREW_BIN="/usr/local/bin/brew"
+  fi
+
+  echo "eval \"\$($BREW_BIN shellenv)\"" >>$HOME/.zprofile
+  eval "$($BREW_BIN shellenv)"
+  echo "export PATH=$(dirname $BREW_BIN):$PATH" >>~/.zshrc
 else
   echo "Homebrew found. Updating..."
   brew update
@@ -55,6 +61,15 @@ if [ -f "$DOTFILES_DIR/Brewfile" ]; then
   brew bundle
 else
   echo "Brewfile not found in $DOTFILES_DIR. Skipping brew bundle step."
+fi
+
+# Install common shell tools via Homebrew (zsh plugins, powerlevel10k, direnv, zoxide, fzf, asdf)
+if command -v brew >/dev/null 2>&1; then
+  echo "Installing shell tools via brew..."
+  brew install zsh-autosuggestions zsh-syntax-highlighting powerlevel10k direnv zoxide fzf asdf || true
+  if [ -d "$(brew --prefix)/opt/fzf" ]; then
+    "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc || true
+  fi
 fi
 
 # Install Oh My Zsh
@@ -94,8 +109,6 @@ else
 fi
 
 # Create Zellij configuration folder
-echo "Creating Zellij configuration folder..."
-mkdir -p $HOME/.config/zellij
 
 # Create symlinks for Zellij config files
 if [ -d "$DOTFILES_DIR/zellij" ]; then
@@ -148,32 +161,32 @@ source "$(brew --prefix asdf)/libexec/asdf.sh"
 
 # Install asdf plugins
 echo "Adding asdf plugins..."
-asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf plugin-add python https://github.com/danhper/asdf-python.git
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add python https://github.com/danhper/asdf-python.git
 
 # Install and set specific versions
 echo "Installing Ruby 3.3.6..."
 asdf install ruby 3.3.6
-asdf global ruby 3.3.6
+asdf set global ruby 3.3.6
 
 echo "Installing Erlang 27.0..."
 asdf install erlang 27.0
-asdf global erlang 27.0
+asdf set global erlang 27.0
 
 echo "Installing Elixir 1.17.2..."
 asdf install elixir 1.17.2
-asdf global elixir 1.17.2
+asdf set global elixir 1.17.2
 
 echo "Installing Node.js 18.20.2..."
 asdf install nodejs 18.20.2
-asdf global nodejs 18.20.2
+asdf set global nodejs 18.20.2
 
 echo "Installing Python 3.10.14..."
 asdf install python 3.10.14
-asdf global python 3.10.14
+asdf set global python 3.10.14
 
 # Reload asdf and validate installations
 source "$(brew --prefix asdf)/libexec/asdf.sh"
