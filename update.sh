@@ -110,7 +110,7 @@ ensure_asdf_and_plugins() {
       echo "[asdf] plugin ${p} present"
     else
       echo "[asdf] adding plugin ${p}"
-      asdf plugin-add "$p" || { echo "[asdf] plugin-add $p failed"; errors=$((errors+1)); }
+      asdf plugin add "$p" || { echo "[asdf] plugin add $p failed"; errors=$((errors+1)); }
     fi
   done
 
@@ -126,7 +126,7 @@ ensure_asdf_and_plugins() {
     else
       echo "[asdf] Installing $p $ver"
       asdf install "$p" "$ver" || { echo "[asdf] install $p $ver failed"; errors=$((errors+1)); continue; }
-      asdf global "$p" "$ver" || true
+      asdf set global "$p" "$ver" || true
     fi
   done
 }

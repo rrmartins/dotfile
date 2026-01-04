@@ -58,24 +58,25 @@ cask "docker"
 cask "github"
 cask "hammerspoon"
 cask "iterm2"
+cask "bitwarden"
 # cask "karabiner-elements"
 # cask "keycastr"
-cask "krisp"
+# cask "krisp"
 # cask "notion"
 # cask "postman"
 cask "telegram"
-cask "tuple"
+# cask "tuple"
 cask "visual-studio-code"
-cask "vlc"
+# cask "vlc"
 # cask "webtorrent"
 
 # cask bartender
 
 # mas "Poolside FM", id: 1514817810
-mas "Refined GitHub", id: 1519867270
+# mas "Refined GitHub", id: 1519867270
 mas "Slack", id: 803453959
-mas "Velja", id: 1607635845
+# mas "Velja", id: 1607635845
 # mas "Userscripts", id: 1463298887
 # mas "LanguageTool - Grammar Checker", id: 1534275760
 mas "ShellHistory", id: 1564015476
-mas "UTC Time", id: 1538245904
+# mas "UTC Time", id: 1538245904

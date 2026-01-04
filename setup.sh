@@ -163,32 +163,32 @@ source "$(brew --prefix asdf)/libexec/asdf.sh"
 
 # Install asdf plugins
 echo "Adding asdf plugins..."
-asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf plugin-add python https://github.com/danhper/asdf-python.git
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add python https://github.com/danhper/asdf-python.git
 
 # Install and set specific versions
 echo "Installing Ruby 3.3.6..."
 asdf install ruby 3.3.6
-asdf global ruby 3.3.6
+asdf set global ruby 3.3.6
 
 echo "Installing Erlang 27.0..."
 asdf install erlang 27.0
-asdf global erlang 27.0
+asdf set global erlang 27.0
 
 echo "Installing Elixir 1.17.2..."
 asdf install elixir 1.17.2
-asdf global elixir 1.17.2
+asdf set global elixir 1.17.2
 
 echo "Installing Node.js 18.20.2..."
 asdf install nodejs 18.20.2
-asdf global nodejs 18.20.2
+asdf set global nodejs 18.20.2
 
 echo "Installing Python 3.10.14..."
 asdf install python 3.10.14
-asdf global python 3.10.14
+asdf set global python 3.10.14
 
 # Reload asdf and validate installations
 source "$(brew --prefix asdf)/libexec/asdf.sh"
