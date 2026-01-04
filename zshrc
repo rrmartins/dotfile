@@ -251,3 +251,5 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
 export ES_JAVA_HOME=/opt/homebrew/Cellar/openjdk/22.0.2/libexec/openjdk.jdk/Contents/Home
+# Added by Antigravity
+export PATH="/Users/rrmartins/.antigravity/antigravity/bin:$PATH"

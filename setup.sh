@@ -40,9 +40,15 @@ if ! command -v brew &>/dev/null; then
 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>$HOME/.zprofile
-  eval "$($(brew --prefix)/bin/brew shellenv)"
-  echo "export PATH=/opt/homebrew/bin:$PATH" >>~/.zshrc
+  if [ -f "/opt/homebrew/bin/brew" ]; then
+    BREW_BIN="/opt/homebrew/bin/brew"
+  else
+    BREW_BIN="/usr/local/bin/brew"
+  fi
+
+  echo "eval \"\$($BREW_BIN shellenv)\"" >>$HOME/.zprofile
+  eval "$($BREW_BIN shellenv)"
+  echo "export PATH=$(dirname $BREW_BIN):$PATH" >>~/.zshrc
 else
   echo "Homebrew found. Updating..."
   brew update

@@ -396,8 +396,8 @@ alias telephony='broadvoice && cd telephony/'
 alias k8slabs='broadvoice && cd k8s-gitops-labs/'
 alias ertbot='broadvoice && cd ertbot/'
 
-. [ -f ~/.profile ] && source ~/.profile
-. [ -f ~/.bashrc ] && source ~/.bashrc
+[ -f ~/.profile ] && source ~/.profile
+[ -f ~/.bashrc ] && source ~/.bashrc
 
 if [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]; then
   . /opt/homebrew/opt/asdf/libexec/asdf.sh
