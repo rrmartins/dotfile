@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the env var to Dotfiles folder
-# export DOTFILES_DIR="/Users/rrmartins/Documents/projects/dotfile"
+export DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 
 # Create folders
 echo "Creating folders..."

@@ -5,13 +5,6 @@ DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 errors=0
 
 echo "Using DOTFILES_DIR=$DOTFILES_DIR"
-#!/usr/bin/env bash
-set -euo pipefail
-
-DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
-errors=0
-
-echo "Using DOTFILES_DIR=$DOTFILES_DIR"
 
 ensure_brew() {
   if command -v brew >/dev/null 2>&1; then

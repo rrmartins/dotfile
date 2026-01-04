@@ -207,7 +207,7 @@ export ASDF_RUBY_BUILD_VERSION=master
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="nicoulaj"
+ZSH_THEME="robbyrussell"
 
 plugins=(git docker docker-compose rails ruby mix mix-fast)
 
