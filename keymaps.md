@@ -1,197 +1,197 @@
-# Keymaps do Neovim - Projeto Dotfiles
+# Neovim Keymaps - Dotfiles Project
 
-Este documento lista todos os keymaps importantes configurados no projeto Neovim.
+This document lists all important keymaps configured in the Neovim project.
 
-## 📋 Índice
+## 📋 Table of Contents
 
-- [Navegação de Abas](#navegação-de-abas)
-- [Gerenciamento de Buffers](#gerenciamento-de-buffers)
-- [Plugins de Teste](#plugins-de-teste)
-- [Navegação Geral](#navegação-geral)
-- [Busca com Telescope](#busca-com-telescope)
+- [Tab Navigation](#tab-navigation)
+- [Buffer Management](#buffer-management)
+- [Test Plugins](#test-plugins)
+- [General Navigation](#general-navigation)
+- [Search with Telescope](#search-with-telescope)
 - [Opencode](#opencode)
-- [AI e Commits](#ai-e-commits)
+- [AI and Commits](#ai-and-commits)
 - [TypeScript](#typescript)
 - [Elixir](#elixir)
 - [Telescope](#telescope)
 
 ---
 
-## 🗂️ Navegação de Abas
+## 🗂️ Tab Navigation
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `gb` | `gT` | Volta para a aba anterior |
-| `<leader><tab>-` | `:tabm-<CR>` | Move aba para a esquerda |
-| `<leader><tab>+` | `:tabm+<CR>` | Move aba para a direita |
-| `<Tab>` | `:tabnext<CR>` | Próxima aba |
-| `<S-Tab>` | `:tabprevious<CR>` | Aba anterior |
+| `gb` | `gT` | Go to previous tab |
+| `<leader><tab>-` | `:tabm-<CR>` | Move tab to the left |
+| `<leader><tab>+` | `:tabm+<CR>` | Move tab to the right |
+| `<Tab>` | `:tabnext<CR>` | Next tab |
+| `<S-Tab>` | `:tabprevious<CR>` | Previous tab |
 
 ---
 
-## 📄 Gerenciamento de Buffers
+## 📄 Buffer Management
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>bx` | `:%bd\|e#<CR>` | Deleta todos os buffers exceto o atual |
+| `<leader>bx` | `:%bd\|e#<CR>` | Delete all buffers except the current one |
 
 ---
 
-## 🧪 Plugins de Teste
+## 🧪 Test Plugins
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>ttn` | `:TestNearest<CR>` | Executa teste mais próximo |
-| `<leader>ttf` | `:TestFile<CR>` | Executa testes do arquivo |
-| `<leader>ttl` | `:TestLast<CR>` | Executa último teste |
+| `<leader>ttn` | `:TestNearest<CR>` | Run nearest test |
+| `<leader>ttf` | `:TestFile<CR>` | Run file tests |
+| `<leader>ttl` | `:TestLast<CR>` | Run last test |
 
 ---
 
-## 🚀 Navegação Geral
+## 🚀 General Navigation
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>nt` | `:Neotree toggle<CR>` | Alterna Neo-tree |
-| `<C-e>` | `:e<cr>` | Abre arquivo |
-| `<C-o>` | `:noh<cr><esc>` | Remove highlight de busca |
-| `<C-s>` | `:w<cr><esc>` | Salva arquivo |
-| `<C-Q>` | `:qa<cr><esc>` | Fecha todos os arquivos |
-| `<C-q>` | `:q<cr><esc>` | Fecha arquivo atual |
+| `<leader>nt` | `:Neotree toggle<CR>` | Toggle Neo-tree |
+| `<C-e>` | `:e<cr>` | Open file |
+| `<C-o>` | `:noh<cr><esc>` | Remove search highlight |
+| `<C-s>` | `:w<cr><esc>` | Save file |
+| `<C-Q>` | `:qa<cr><esc>` | Close all files |
+| `<C-q>` | `:q<cr><esc>` | Close current file |
 
 ---
 
-## 🔍 Busca com Telescope
+## 🔍 Search with Telescope
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>zb` | Telescope live_grep | Busca em arquivos .rb |
-| `<leader>zsd` | Telescope live_grep | Busca em .rb excluindo spec e db |
-| `<leader>zss` | Telescope live_grep | Busca em .rb excluindo spec |
-| `<leader>fp` | Telescope find_files | Busca arquivos de plugins |
+| `<leader>zb` | Telescope live_grep | Search in .rb files |
+| `<leader>zsd` | Telescope live_grep | Search in .rb excluding spec and db |
+| `<leader>zss` | Telescope live_grep | Search in .rb excluding spec |
+| `<leader>fp` | Telescope find_files | Search plugin files |
 
 ---
 
 ## 🧠 Opencode
 
-Atalhos para interagir com o painel do opencode.nvim.
+Shortcuts to interact with the opencode.nvim panel.
 
-| Keymap | Modo | Função | Descrição |
+| Keymap | Mode | Function | Description |
 |--------|------|--------|-----------|
-| `<C-a>` | Normal/Visual | `opencode.ask("@this: ", { submit = true })` | Abre o prompt já enviando o contexto selecionado |
-| `<C-x>` | Normal/Visual | `opencode.select()` | Executa a ação sugerida pelo opencode |
-| `<C-.>` | Normal/Terminal | `opencode.toggle()` | Mostra ou oculta o painel do opencode |
-| `go` | Normal/Visual | `opencode.operator("@this ")` | Envia seleção ou movimento para o opencode |
-| `goo` | Normal | `opencode.operator("@this ") .. "_"` | Envia a linha atual para o opencode |
-| `<C-k>` | Normal | `opencode.command("session.half.page.up")` | Rola meia página para cima no painel |
-| `<C-j>` | Normal | `opencode.command("session.half.page.down")` | Rola meia página para baixo no painel |
+| `<C-a>` | Normal/Visual | `opencode.ask("@this: ", { submit = true })` | Open prompt already sending the selected context |
+| `<C-x>` | Normal/Visual | `opencode.select()` | Execute suggested action by opencode |
+| `<C-.>` | Normal/Terminal | `opencode.toggle()` | Show or hide the opencode panel |
+| `go` | Normal/Visual | `opencode.operator("@this ")` | Send selection or movement to opencode |
+| `goo` | Normal | `opencode.operator("@this ") .. "_"` | Send current line to opencode |
+| `<C-k>` | Normal | `opencode.command("session.half.page.up")` | Scroll half page up in panel |
+| `<C-j>` | Normal | `opencode.command("session.half.page.down")` | Scroll half page down in panel |
 
-### Fluxo rápido
+### Quick Flow
 
-- Selecione um trecho ou use `go{movimento}` em Normal.
-- Pressione `<C-a>` para abrir o prompt com o contexto.
-- Use `<C-x>` para escolher a ação sugerida (ou `Esc` para cancelar).
-- Quando o opencode pedir permissão para alterar algo, confirme com `y` ou negue com `n`.
+- Select a snippet or use `go{motion}` in Normal mode.
+- Press `<C-a>` to open the prompt with context.
+- Use `<C-x>` to choose the suggested action (or `Esc` to cancel).
+- When opencode asks for permission to change something, confirm with `y` or deny with `n`.
 
 ---
 
-## 🤖 AI e Commits
+## 🤖 AI and Commits
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>ai` | `:AICommits<CR>` | Gera commits com IA |
+| `<leader>ai` | `:AICommits<CR>` | Generate commits with AI |
 
 ---
 
 ## 📝 TypeScript
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>co` | `TypescriptOrganizeImports` | Organiza imports |
-| `<leader>cR` | `TypescriptRenameFile` | Renomeia arquivo |
+| `<leader>co` | `TypescriptOrganizeImports` | Organize imports |
+| `<leader>cR` | `TypescriptRenameFile` | Rename file |
 
 ---
 
 ## 💧 Elixir
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>cp` | Manipulate Pipes | Converte para pipe |
-| `<leader>cP` | Manipulate Pipes | Converte de pipe |
+| `<leader>cp` | Manipulate Pipes | Convert to pipe |
+| `<leader>cP` | Manipulate Pipes | Convert from pipe |
 
 ---
 
 ## 🔭 Telescope
 
-### Mapeamentos Internos
+### Internal Mappings
 
-| Keymap | Função | Descrição |
+| Keymap | Function | Description |
 |--------|--------|-----------|
-| `<c-t>` (Insert) | `actions.select_tab` | Abre seleção em nova aba |
-| `<c-t>` (Normal) | `actions.select_tab` | Abre seleção em nova aba |
+| `<c-t>` (Insert) | `actions.select_tab` | Open selection in new tab |
+| `<c-t>` (Normal) | `actions.select_tab` | Open selection in new tab |
 
 ---
 
-## 📚 Plugins Configurados
+## 📚 Configured Plugins
 
-### AI e Automação
-- **github/copilot.vim** - Autocompletar com IA
-- **marco-souza/ollero.nvim** - Interface para Ollama
-- **yetone/avante.nvim** - Interface similar ao Cursor
-- **skywind3000/vim-gpt-commit** - Commits automáticos com IA
-- **NickvanDyke/opencode.nvim** - Assistente opencode no Neovim
+### AI and Automation
+- **github/copilot.vim** - Autocomplete with AI
+- **marco-souza/ollero.nvim** - Interface for Ollama
+- **yetone/avante.nvim** - Cursor-like interface
+- **skywind3000/vim-gpt-commit** - Automatic commits with AI
+- **NickvanDyke/opencode.nvim** - Opencode assistant in Neovim
 
-### Desenvolvimento
-- **vim-test** - Execução de testes
-- **typescript.nvim** - Suporte avançado para TypeScript
-- **elixirls** - Language Server para Elixir
-- **ruby_lsp** - Language Server para Ruby
+### Development
+- **vim-test** - Test execution
+- **typescript.nvim** - Advanced support for TypeScript
+- **elixirls** - Language Server for Elixir
+- **ruby_lsp** - Language Server for Ruby
 
 ### Interface
-- **telescope.nvim** - Busca e navegação
+- **telescope.nvim** - Search and navigation
 - **nvim-treesitter** - Syntax highlighting
-- **lualine.nvim** - Barra de status
+- **lualine.nvim** - Status bar
 
 ---
 
-## 🧭 Guia Rápido de Navegação e Busca
+## 🧭 Quick Guide to Navigation and Search
 
-Esses são os atalhos mais utilizados para o fluxo de trabalho diário:
+These are the most used shortcuts for daily workflow:
 
-| Ação | Atalho | Notas |
+| Action | Shortcut | Notes |
 | :--- | :--- | :--- |
-| **Encontrar Arquivo** | `<leader> <space>` | Busca inteligente (Find Files) |
-| **Encontrar Texto** | `<leader> /` | Busca global (Live Grep) |
-| **Painel Opencode** | `<C-.>` | Mostra ou oculta o painel |
-| **Enviar ao Opencode** | `go` | Envia seleção ou movimento |
-| **Árvore de Arquivos** | `<leader> nt` | Alterna Neo-tree |
-| **Próxima Aba** | `<Tab>` | Navegação rápida |
-| **Aba Anterior** | `<S-Tab>` | Navegação rápida |
-| **Limpar Buffers** | `<leader> bx` | Mantém apenas o atual |
-| **Abrir em Nova Aba** | `<C-t>` | (Dentro do Telescope) |
+| **Find File** | `<leader> <space>` | Smart search (Find Files) |
+| **Find Text** | `<leader> /` | Global search (Live Grep) |
+| **Opencode Panel** | `<C-.>` | Show or hide the panel |
+| **Send to Opencode** | `go` | Send selection or movement |
+| **File Tree** | `<leader> nt` | Toggle Neo-tree |
+| **Next Tab** | `<Tab>` | Quick navigation |
+| **Previous Tab** | `<S-Tab>` | Quick navigation |
+| **Clear Buffers** | `<leader> bx` | Keep only the current one |
+| **Open in New Tab** | `<C-t>` | (Inside Telescope) |
 
 ---
 
-## 🎯 Dicas de Uso
+## 🎯 Usage Tips
 
-1. **Leader Key**: O leader padrão é `<space>`
-2. **Modos**: Os keymaps funcionam principalmente em modo Normal (`n`)
-3. **Plugins**: Muitos keymaps dependem de plugins específicos estarem carregados
-4. **LSP**: Alguns keymaps só funcionam quando o Language Server está ativo
+1. **Leader Key**: The default leader is `<space>`
+2. **Modes**: Keymaps work mostly in Normal mode (`n`)
+3. **Plugins**: Many keymaps depend on specific plugins being loaded
+4. **LSP**: Some keymaps only work when the Language Server is active
 
 ---
 
-## 🔧 Personalização
+## 🔧 Customization
 
-Para adicionar novos keymaps, edite o arquivo:
+To add new keymaps, edit the file:
 ```
 nvim/lua/config/keymaps.lua
 ```
 
-Para configurar plugins específicos, edite os arquivos em:
+To configure specific plugins, edit files in:
 ```
 nvim/lua/plugins/
 ```
 
 ---
 
-*Documentação gerada automaticamente a partir da configuração do projeto.*
+*Documentation automatically generated from project configuration.*
