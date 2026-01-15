@@ -1,27 +1,6 @@
 return {
   { "github/copilot.vim", event = "VeryLazy" },
 
-  -- setup ollero
-  {
-    "marco-souza/ollero.nvim",
-    build = ":!go install github.com/marco-souza/omg@latest",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "term.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
-    },
-    config = function()
-      require("term").setup({
-        auto_close = true,
-        auto_resize = true,
-        auto_scroll = true,
-        persist = true,
-      })
-    end,
-    opts = { model = "deepseek-r1:14b" },
-  },
-
   -- avante.nvim (nvim cursor-like)
   {
     "yetone/avante.nvim",
