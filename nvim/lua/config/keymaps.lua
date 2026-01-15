@@ -27,7 +27,7 @@ vim.keymap.set("n", "<leader>ttn", ":TestNearest<CR>", { desc = "Test nearest", 
 vim.keymap.set("n", "<leader>ttf", ":TestFile<CR>", { desc = "Test file", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ttl", ":TestLast<CR>", { desc = "Test last", noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle <CR><esc>", opts)
+vim.keymap.set("n", "<leader>nt", ":Neotree toggle<CR>", opts)
 
 vim.keymap.set("n", "<C-e>", ":e<cr>", opts)
 vim.keymap.set("n", "<C-o>", ":noh<cr><esc>", opts)
@@ -55,6 +55,66 @@ vim.keymap.set("n", "<leader>zss", function()
 end, { desc = "Search files .rb excluding spec folder" })
 
 vim.keymap.set("n", "<leader>ai", ":AICommits<CR>", { desc = "AI Commits", noremap = true, silent = true })
+
+-- OPENCODE
+vim.keymap.set(
+  { "n", "x" },
+  "<C-a>",
+  function()
+    require("opencode").ask("@this: ", { submit = true })
+  end,
+  { desc = "Ask opencode", noremap = true, silent = true }
+)
+vim.keymap.set(
+  { "n", "x" },
+  "<C-x>",
+  function()
+    require("opencode").select()
+  end,
+  { desc = "Execute opencode action", noremap = true, silent = true }
+)
+vim.keymap.set(
+  { "n", "t" },
+  "<C-.>",
+  function()
+    require("opencode").toggle()
+  end,
+  { desc = "Toggle opencode", noremap = true, silent = true }
+)
+
+vim.keymap.set(
+  { "n", "x" },
+  "go",
+  function()
+    return require("opencode").operator("@this ")
+  end,
+  { expr = true, desc = "Add range to opencode", noremap = true, silent = true }
+)
+vim.keymap.set(
+  "n",
+  "goo",
+  function()
+    return require("opencode").operator("@this ") .. "_"
+  end,
+  { expr = true, desc = "Add line to opencode", noremap = true, silent = true }
+)
+
+vim.keymap.set(
+  "n",
+  "<C-k>",
+  function()
+    require("opencode").command("session.half.page.up")
+  end,
+  { desc = "Opencode half page up", noremap = true, silent = true }
+)
+vim.keymap.set(
+  "n",
+  "<C-j>",
+  function()
+    require("opencode").command("session.half.page.down")
+  end,
+  { desc = "Opencode half page down", noremap = true, silent = true }
+)
 
 -- function ReloadConfig()
 --   for name,_ in pairs(package.loaded) do
