@@ -9,6 +9,7 @@ Este documento lista todos os keymaps importantes configurados no projeto Neovim
 - [Plugins de Teste](#plugins-de-teste)
 - [Navegação Geral](#navegação-geral)
 - [Busca com Telescope](#busca-com-telescope)
+- [Opencode](#opencode)
 - [AI e Commits](#ai-e-commits)
 - [TypeScript](#typescript)
 - [Elixir](#elixir)
@@ -50,7 +51,7 @@ Este documento lista todos os keymaps importantes configurados no projeto Neovim
 
 | Keymap | Função | Descrição |
 |--------|--------|-----------|
-| `<leader>nt` | `:NERDTreeToggle <CR><esc>` | Alterna NERDTree |
+| `<leader>nt` | `:Neotree toggle<CR>` | Alterna Neo-tree |
 | `<C-e>` | `:e<cr>` | Abre arquivo |
 | `<C-o>` | `:noh<cr><esc>` | Remove highlight de busca |
 | `<C-s>` | `:w<cr><esc>` | Salva arquivo |
@@ -67,6 +68,29 @@ Este documento lista todos os keymaps importantes configurados no projeto Neovim
 | `<leader>zsd` | Telescope live_grep | Busca em .rb excluindo spec e db |
 | `<leader>zss` | Telescope live_grep | Busca em .rb excluindo spec |
 | `<leader>fp` | Telescope find_files | Busca arquivos de plugins |
+
+---
+
+## 🧠 Opencode
+
+Atalhos para interagir com o painel do opencode.nvim.
+
+| Keymap | Modo | Função | Descrição |
+|--------|------|--------|-----------|
+| `<C-a>` | Normal/Visual | `opencode.ask("@this: ", { submit = true })` | Abre o prompt já enviando o contexto selecionado |
+| `<C-x>` | Normal/Visual | `opencode.select()` | Executa a ação sugerida pelo opencode |
+| `<C-.>` | Normal/Terminal | `opencode.toggle()` | Mostra ou oculta o painel do opencode |
+| `go` | Normal/Visual | `opencode.operator("@this ")` | Envia seleção ou movimento para o opencode |
+| `goo` | Normal | `opencode.operator("@this ") .. "_"` | Envia a linha atual para o opencode |
+| `<C-k>` | Normal | `opencode.command("session.half.page.up")` | Rola meia página para cima no painel |
+| `<C-j>` | Normal | `opencode.command("session.half.page.down")` | Rola meia página para baixo no painel |
+
+### Fluxo rápido
+
+- Selecione um trecho ou use `go{movimento}` em Normal.
+- Pressione `<C-a>` para abrir o prompt com o contexto.
+- Use `<C-x>` para escolher a ação sugerida (ou `Esc` para cancelar).
+- Quando o opencode pedir permissão para alterar algo, confirme com `y` ou negue com `n`.
 
 ---
 
@@ -114,6 +138,7 @@ Este documento lista todos os keymaps importantes configurados no projeto Neovim
 - **marco-souza/ollero.nvim** - Interface para Ollama
 - **yetone/avante.nvim** - Interface similar ao Cursor
 - **skywind3000/vim-gpt-commit** - Commits automáticos com IA
+- **NickvanDyke/opencode.nvim** - Assistente opencode no Neovim
 
 ### Desenvolvimento
 - **vim-test** - Execução de testes
@@ -125,6 +150,24 @@ Este documento lista todos os keymaps importantes configurados no projeto Neovim
 - **telescope.nvim** - Busca e navegação
 - **nvim-treesitter** - Syntax highlighting
 - **lualine.nvim** - Barra de status
+
+---
+
+## 🧭 Guia Rápido de Navegação e Busca
+
+Esses são os atalhos mais utilizados para o fluxo de trabalho diário:
+
+| Ação | Atalho | Notas |
+| :--- | :--- | :--- |
+| **Encontrar Arquivo** | `<leader> <space>` | Busca inteligente (Find Files) |
+| **Encontrar Texto** | `<leader> /` | Busca global (Live Grep) |
+| **Painel Opencode** | `<C-.>` | Mostra ou oculta o painel |
+| **Enviar ao Opencode** | `go` | Envia seleção ou movimento |
+| **Árvore de Arquivos** | `<leader> nt` | Alterna Neo-tree |
+| **Próxima Aba** | `<Tab>` | Navegação rápida |
+| **Aba Anterior** | `<S-Tab>` | Navegação rápida |
+| **Limpar Buffers** | `<leader> bx` | Mantém apenas o atual |
+| **Abrir em Nova Aba** | `<C-t>` | (Dentro do Telescope) |
 
 ---
 
