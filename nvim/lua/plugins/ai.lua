@@ -71,6 +71,9 @@ return {
       -- if you don't want to set your api key directly, add to your .zshrc:
       -- export OPENAI_API_KEY='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
       vim.g.gpt_commit_key = os.getenv("OPENAI_API_KEY")
+      if not vim.g.gpt_commit_key or vim.g.gpt_commit_key == "" then
+        vim.notify("gpt-commit: defina OPENAI_API_KEY para usar :GptCommit", vim.log.levels.WARN)
+      end
       -- uncomment this line below to enable proxy
       -- vim.g.gpt_commit_proxy = 'socks5://127.0.0.1:1080'
 
