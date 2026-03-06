@@ -54,7 +54,7 @@ vim.keymap.set("n", "<leader>zss", function()
   })
 end, { desc = "Search files .rb excluding spec folder" })
 
-vim.keymap.set("n", "<leader>ai", ":AICommits<CR>", { desc = "AI Commits", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ai", ":GptCommit<CR>", { desc = "AI Commit message", noremap = true, silent = true })
 
 -- OPENCODE
 vim.keymap.set(
