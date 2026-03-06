@@ -395,6 +395,7 @@ alias ap='broadvoice && cd ap/'
 alias telephony='broadvoice && cd telephony/'
 alias k8slabs='broadvoice && cd k8s-gitops-labs/'
 alias ertbot='broadvoice && cd ertbot/'
+alias vmrm='ssh -i ~/.ssh/broadvoice root@irl-w1-aws-dev-20260121.finesource.org'
 
 [ -f ~/.profile ] && source ~/.profile
 [ -f ~/.bashrc ] && source ~/.bashrc
