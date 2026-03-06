@@ -98,7 +98,11 @@ Shortcuts to interact with the opencode.nvim panel.
 
 | Keymap | Function | Description |
 |--------|--------|-----------|
-| `<leader>ai` | `:AICommits<CR>` | Generate commits with AI |
+| `<leader>ai` | `:GptCommit<CR>` | Generate AI commit message |
+
+Notes:
+- Requires `OPENAI_API_KEY` in your shell environment.
+- Run `:GptCommit` in a writable buffer (e.g. `COMMIT_EDITMSG` or `:enew`).
 
 ---
 
