@@ -1,0 +1,97 @@
+[language-server]
+elixir-ls = { command = "elixir-ls", config = { elixirLS.dialyzerEnabled = false } }
+elm-language-server = { command = "elm-language-server" }
+
+solargraph = { command = "solargraph", args = ["stdio"] }
+
+[[language]]
+name = "ruby"
+scope = "source.ruby"
+injection-regex = "ruby"
+file-types = [
+  "rb",
+  "rake",
+  "irb",
+  "gemspec",
+  "rabl",
+  "jbuilder",
+  "jb",
+  "podspec",
+  "rjs",
+  "rbi",
+  "rbs",
+  { glob = "rakefile" },
+  { glob = "gemfile" },
+  { glob = "Rakefile" },
+  { glob = "Gemfile" },
+  { glob = "Podfile" },
+  { glob = "Vagrantfile" },
+  { glob = "Brewfile" },
+  { glob = "Guardfile" },
+  { glob = "Capfile" },
+  { glob = "Cheffile" },
+  { glob = "Hobofile" },
+  { glob = "Appraisals" },
+  { glob = "Rantfile" },
+  { glob = "Berksfile" },
+  { glob = "Berksfile.lock" },
+  { glob = "Thorfile" },
+  { glob = "Puppetfile" },
+  { glob = "Fastfile" },
+  { glob = "Appfile" },
+  { glob = "Deliverfile" },
+  { glob = "Matchfile" },
+  { glob = "Scanfile" },
+  { glob = "Snapfile" },
+  { glob = "Gymfile" },
+]
+shebangs = ["ruby"]
+comment-token = "#"
+language-servers = [ "solargraph" ]
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "ruby"
+source = { git = "https://github.com/tree-sitter/tree-sitter-ruby", rev = "206c7077164372c596ffa8eaadb9435c28941364" }
+
+
+[[language]]
+name = "elixir"
+scope = "source.elixir"
+injection-regex = "(elixir|ex)"
+file-types = ["ex", "exs", { glob = "mix.lock" }]
+shebangs = ["elixir"]
+roots = ["mix.exs", "mix.lock"]
+comment-token = "#"
+language-servers = [ "elixir-ls" ]
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "elixir"
+source = { git = "https://github.com/elixir-lang/tree-sitter-elixir", rev = "b20eaa75565243c50be5e35e253d8beb58f45d56"  }
+
+[[language]]
+name = "iex"
+scope = "source.iex"
+injection-regex = "iex"
+file-types = ["iex"]
+comment-token = "#"
+
+[[grammar]]
+name = "iex"
+source = { git = "https://github.com/elixir-lang/tree-sitter-iex", rev = "39f20bb51f502e32058684e893c0c0b00bb2332c" }
+
+[[grammar]]
+name = "eex"
+source = { git = "https://github.com/connorlay/tree-sitter-eex", rev = "f742f2fe327463335e8671a87c0b9b396905d1d1" }
+
+[[language]]
+name = "heex"
+scope = "source.heex"
+injection-regex = "heex"
+file-types = ["heex"]
+roots = ["mix.exs", "mix.lock"]
+block-comment-tokens = { start = "<!--", end = "-->" }
+indent = { tab-width = 2, unit = "  " }
+language-servers = [ "elixir-ls" ]
+
