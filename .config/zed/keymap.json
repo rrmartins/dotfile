@@ -1,0 +1,26 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      // "cmd+1": "workspace.switchToProject1"
+      "alt-shift-w": "projects::OpenRecent"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "shift-k": "editor::Hover",
+      "shift-gd": "editor::GoToDefinition"
+      // "shift-left": "pane::ActivatePrevItem",
+      // "shift-right": "pane::ActivateNextItem"
+    }
+  }
+]
