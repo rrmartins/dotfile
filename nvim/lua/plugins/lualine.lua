@@ -3,6 +3,9 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = {
+      options = {
+        icons_enabled = false,
+      },
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff" },
