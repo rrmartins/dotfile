@@ -1,0 +1,4 @@
+WRN 2026-01-20T23:28:19.958 ?.97028    server_start:199: Failed to start server: operation not permitted: /var/folders/6m/_dp4srq15cx2jy_vlh3lg40c0000gn/T/nvim.rrmartins/ESij7h/nvim.97028.0
+WRN 2026-01-20T23:30:32.975 ?.4628     server_start:199: Failed to start server: operation not permitted: /var/folders/6m/_dp4srq15cx2jy_vlh3lg40c0000gn/T/nvim.rrmartins/T0Q4bI/nvim.4628.0
+WRN 2026-01-20T23:31:28.991 ?.7551     server_start:199: Failed to start server: operation not permitted: /var/folders/6m/_dp4srq15cx2jy_vlh3lg40c0000gn/T/nvim.rrmartins/lGsmuO/nvim.7551.0
+WRN 2026-01-20T23:36:13.995 ?.23785    server_start:199: Failed to start server: operation not permitted: /var/folders/6m/_dp4srq15cx2jy_vlh3lg40c0000gn/T/nvim.rrmartins/3fxccV/nvim.23785.0

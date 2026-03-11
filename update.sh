@@ -125,22 +125,16 @@ ensure_asdf_and_plugins() {
 }
 
 ensure_symlinks() {
-  checks=(
-    "$HOME/.zshrc:$DOTFILES_DIR/zshrc"
-    "$HOME/.zshrc_aliases:$DOTFILES_DIR/zshrc_aliases"
-    "$HOME/.p10k.zsh:$DOTFILES_DIR/p10k.zsh"
-    "$HOME/.config/nvim/init.lua:$DOTFILES_DIR/nvim/init.lua"
-    "$HOME/.config/zellij:$DOTFILES_DIR/zellij"
-  )
-  for entry in "${checks[@]}"; do
-    IFS=":" read -r path target <<< "$entry"
+  ensure_link() {
+    path="$1"
+    target="$2"
     if [ -e "$target" ]; then
       if [ -L "$path" ]; then
         real=$(readlink -f "$path" || realpath "$path" 2>/dev/null || true)
         expected=$(readlink -f "$target" || realpath "$target" 2>/dev/null || true)
         if [ "$real" = "$expected" ]; then
           echo "[link] $path -> ok"
-          continue
+          return 0
         fi
       fi
       echo "[link] Creating symlink $path -> $target"
@@ -150,7 +144,32 @@ ensure_symlinks() {
       echo "[link] target $target does not exist — skipping $path"
       errors=$((errors+1))
     fi
+  }
+
+  checks=(
+    "$HOME/.zshrc:$DOTFILES_DIR/zshrc"
+    "$HOME/.zshrc_aliases:$DOTFILES_DIR/zshrc_aliases"
+    "$HOME/.p10k.zsh:$DOTFILES_DIR/p10k.zsh"
+    "$HOME/.config/nvim/init.lua:$DOTFILES_DIR/nvim/init.lua"
+    "$HOME/.config/zellij:$DOTFILES_DIR/zellij"
+  )
+  for entry in "${checks[@]}"; do
+    IFS=":" read -r path target <<< "$entry"
+    ensure_link "$path" "$target"
   done
+
+  if [ -d "$DOTFILES_DIR/.config" ]; then
+    echo "[link] Ensuring .config entries"
+    shopt -s dotglob
+    for item in "$DOTFILES_DIR/.config/"*; do
+      name="$(basename "$item")"
+      case "$name" in
+        .|..|nvim|git|zellij) continue ;;
+      esac
+      ensure_link "$HOME/.config/$name" "$item"
+    done
+    shopt -u dotglob
+  fi
 }
 
 echo "Starting install+validation..."

@@ -1,0 +1,82 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette
+{
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "base_keymap": "VSCode",
+  "agent": {
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-5.2"
+    },
+    "model_parameters": []
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Dracula"
+  },
+  "files": {
+    "exclude": ["**/.git", "**/.DS_Store", "node_modules", "deps", "_build"]
+  },
+  "lsp": {
+    "solargraph": {
+      "initialization_options": {
+        "diagnostics": true,
+        "formatting": true
+      },
+      "binary": {
+        "path": "/Users/rrmartins/.asdf/shims/solargraph"
+      }
+    },
+    "rubocop": {
+      "initialization_options": {
+        "safeAutocorrect": true
+      },
+      "binary": {
+        "path": "/Users/rrmartins/.asdf/shims/rubocop"
+      }
+    },
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "diagnostics": false
+        }
+      },
+      "binary": {
+        "path": "/Users/rrmartins/.asdf/shims/ruby-lsp"
+      }
+    },
+    "elixir-ls": {
+      "settings": {
+        "dialyzerEnabled": false
+      },
+      "binary": {
+        "path": "/opt/homebrew/bin/elixir-ls"
+      }
+    }
+  },
+  "languages": {
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "rubocop", "solargraph"]
+    },
+    "Elixir": {
+      "format_on_save": {
+        "external": {
+          "command": "mix",
+          "arguments": ["format", "--stdin-filename", "{buffer_path}", "-"]
+        }
+      },
+      "language_servers": ["next-ls", "!elixir-ls", "..."]
+    }
+  }
+}

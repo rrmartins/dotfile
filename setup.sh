@@ -18,6 +18,19 @@ ln -sfn "$DOTFILES_DIR/zshrc" $HOME/.zshrc
 ln -sfn "$DOTFILES_DIR/zshrc_aliases" $HOME/.zshrc_aliases
 ln -sfn "$DOTFILES_DIR/p10k.zsh" $HOME/.p10k.zsh
 
+if [ -d "$DOTFILES_DIR/.config" ]; then
+  echo "Linking .config entries..."
+  shopt -s dotglob
+  for item in "$DOTFILES_DIR/.config/"*; do
+    name="$(basename "$item")"
+    case "$name" in
+      .|..|nvim|git|zellij) continue ;;
+    esac
+    ln -sfn "$item" "$HOME/.config/$name"
+  done
+  shopt -u dotglob
+fi
+
 ln -sfn "$DOTFILES_DIR/git" $HOME/.config/
 
 ln -sfn "$DOTFILES_DIR/nvim/lua" $HOME/.config/nvim/

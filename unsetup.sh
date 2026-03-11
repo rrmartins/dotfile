@@ -1,12 +1,12 @@
 #!/bin/bash
 
+export DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "$0")" && pwd)}"
+
 # Remove created folders
 echo "Removing folders..."
 rm -rf $HOME/.config/nvim/.undo/
 rm -rf $HOME/.config/nvim/.backup/
 rm -rf $HOME/.config/nvim/.swp/
-rm -rf $HOME/.config/nvim/
-rm -rf $HOME/.config/
 rm -rf $HOME/.hammerspoon/
 
 # Remove created symlinks
@@ -24,6 +24,21 @@ unlink $HOME/.hammerspoon/Spoons
 
 unlink $HOME/.tmux.conf
 unlink $HOME/.hushlogin
+
+if [ -d "$DOTFILES_DIR/.config" ]; then
+    echo "Removing .config symlinks..."
+    shopt -s dotglob
+    for item in "$DOTFILES_DIR/.config/"*; do
+        name="$(basename "$item")"
+        case "$name" in
+            .|..|nvim|git|zellij) continue ;;
+        esac
+        if [ -L "$HOME/.config/$name" ]; then
+            unlink "$HOME/.config/$name"
+        fi
+    done
+    shopt -u dotglob
+fi
 
 # Uninstall shell tools installed via Homebrew
 if command -v brew >/dev/null 2>&1; then
