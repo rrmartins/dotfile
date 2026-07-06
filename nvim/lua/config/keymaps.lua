@@ -27,13 +27,23 @@ vim.keymap.set("n", "<leader>ttn", ":TestNearest<CR>", { desc = "Test nearest", 
 vim.keymap.set("n", "<leader>ttf", ":TestFile<CR>", { desc = "Test file", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ttl", ":TestLast<CR>", { desc = "Test last", noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>nt", ":Neotree toggle<CR>", opts)
+vim.keymap.set("n", "<leader>nt", function() Snacks.explorer() end, { desc = "Toggle Explorer", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>e", function() Snacks.explorer() end, { desc = "Toggle Explorer", noremap = true, silent = true })
 
-vim.keymap.set("n", "<C-e>", ":e<cr>", opts)
-vim.keymap.set("n", "<C-o>", ":noh<cr><esc>", opts)
-vim.keymap.set("n", "<C-s>", ":w<cr><esc>", opts)
-vim.keymap.set("n", "<C-Q>", ":qa<cr><esc>", opts)
-vim.keymap.set("n", "<C-q>", ":q<cr><esc>", opts)
+vim.keymap.set("n", "<C-e>", "<cmd>edit<cr>", opts)
+vim.keymap.set("n", "<C-o>", "<cmd>nohlsearch<cr>", opts)
+vim.keymap.set("n", "<C-s>", "<cmd>write<cr>", opts)
+vim.keymap.set("n", "<C-Q>", "<cmd>qall<cr>", opts)
+vim.keymap.set("n", "<C-q>", function()
+  if vim.fn.tabpagenr("$") > 1 then
+    vim.cmd("tabclose")
+  else
+    local ok, err = pcall(vim.cmd, "qall")
+    if not ok then
+      vim.notify(err, vim.log.levels.ERROR)
+    end
+  end
+end, opts)
 
 vim.keymap.set("n", "<Tab>", ":tabnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", opts)
