@@ -6,3 +6,6 @@
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+
+# Ignore Claude Code worktrees (contain nested .git pointers)
+.claude/worktrees/
