@@ -241,3 +241,18 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 export ES_JAVA_HOME=/opt/homebrew/Cellar/openjdk/22.0.2/libexec/openjdk.jdk/Contents/Home
 
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/rrmartins/.antigravity/antigravity/bin:$PATH"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/rrmartins/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
+export AWS_PROFILE=gruvi
+
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Created by `pipx` on 2026-06-08 20:31:13
+export PATH="$PATH:/Users/rrmartins/.local/bin"
