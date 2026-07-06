@@ -40,7 +40,12 @@
       "Bash(curl -sL \"https://github.com/dj95/zjstatus/releases/download/v0.23.0/zjstatus.wasm\" -o ~/.config/zellij/plugins/zjstatus.wasm)",
       "Bash(mkdir -p \"/Users/rrmartins/Library/Mobile Documents/iCloud~md~obsidian/Documents/rrmartins/Personal/worklogs\")",
       "Bash(git -C /Users/rrmartins/Documents/dotfile branch --show-current)",
-      "Bash(git -C /Users/rrmartins/Documents/dotfile status --porcelain)"
+      "Bash(git -C /Users/rrmartins/Documents/dotfile status --porcelain)",
+      "Bash(xargs -0 ls -la)",
+      "Bash(cp ~/.config/nvim/lazy-lock.json ~/.config/nvim/lazyvim.json ~/dev/dotfile/nvim/)",
+      "Bash(mv ~/.config/nvim ~/.config/nvim.bak-icloud)",
+      "Bash(ln -s ~/dev/dotfile/nvim ~/.config/nvim)",
+      "Bash(ln -sfn ~/dev/dotfile/zellij ~/.config/zellij/zellij)"
     ]
   }
 }
