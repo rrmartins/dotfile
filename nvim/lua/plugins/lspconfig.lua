@@ -16,7 +16,7 @@ return {
           cmd = { "/Users/rrmartins/.asdf/shims/ruby-lsp" },
         },
         solargraph = {
-          enabled = lsp == "solargraph",
+          enabled = false,
           cmd = { "/Users/rrmartins/.asdf/shims/solargraph" },
         },
         rubocop = {
